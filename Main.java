@@ -54,17 +54,26 @@ System.out.println(" Thank you!");
     }
 
     private static void viewAvailableRooms() {
-        System.out.println("\n--- Available Rooms ---");
-        boolean anyAvailable = false;
-        for (Room room : rooms) {
-            if (!room.isBooked()) {
-                System.out.println(room);
-                anyAvailable = true;
-            }
+    System.out.println("\n--- Available Rooms ---");
+
+    // Print table header with fixed-width columns
+    System.out.printf("%-10s %-10s %-10s\n", "Room No", "Type", "Price");
+    System.out.println("-------------------------------");
+
+    boolean anyAvailable = false;
+    for (Room room : rooms) {
+        if (!room.isBooked()) {
+            // Print each room in fixed-width format
+            System.out.printf("%-10d %-10s %-10.2f\n", room.getRoomNumber(), room.getType(), room.getPricePerNight());
+            anyAvailable = true;
         }
-        if (!anyAvailable) 
+    }
+
+    if (!anyAvailable) {
         System.out.println("No rooms available!");
     }
+}
+
 
     private static void bookRoom() {
     String name;
